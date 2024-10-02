@@ -1,8 +1,8 @@
-package com.example.movieapp.core.data.remote
+package com.example.movieapp.framework.data.remote
 
-import com.example.movieapp.core.data.remote.response.MovieDetailResponse
-import com.example.movieapp.core.data.remote.response.MovieResponse
-import com.example.movieapp.core.data.remote.response.SearchResponse
+import com.example.movieapp.framework.data.remote.response.MovieDetailResponse
+import com.example.movieapp.framework.data.remote.response.MovieResponse
+import com.example.movieapp.framework.data.remote.response.SearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

@@ -1,7 +1,7 @@
-package com.example.movieapp.core.data.remote
+package com.example.movieapp.framework.data.remote
 
 import com.example.movieapp.BuildConfig
-import com.example.movieapp.core.util.Constants
+import com.example.movieapp.framework.util.Constants
 import okhttp3.Interceptor
 import okhttp3.Response
 
