@@ -1,8 +1,8 @@
-package com.example.movieapp.framework.di
+package com.example.movieapp.core.di
 
 import com.example.movieapp.BuildConfig
-import com.example.movieapp.framework.data.remote.MovieService
-import com.example.movieapp.framework.data.remote.ParamsInterceptor
+import com.example.movieapp.core.data.remote.MovieService
+import com.example.movieapp.core.data.remote.ParamsInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

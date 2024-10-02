@@ -1,4 +1,4 @@
-package com.example.movieapp.framework.util
+package com.example.movieapp.core.util
 
 object Constants {
     const val API_KEY_PARAM = "api_key"
