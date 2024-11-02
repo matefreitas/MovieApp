@@ -16,13 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import coil3.compose.AsyncImagePainter
 import com.example.movieapp.core.domain.model.MovieSearch
 import com.example.movieapp.core.presentation.components.commom.ErrorScreen
 import com.example.movieapp.core.presentation.components.commom.LoadingView
 import com.example.movieapp.movie_popular_feature.presentation.components.MovieItem
 import com.example.movieapp.search_movie_feature.presentation.MovieSearchEvent
-import java.nio.file.WatchEvent
 
 @Composable
 fun SearchContent(
