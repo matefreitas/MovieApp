@@ -1,6 +1,8 @@
 package com.example.movieapp.core.presentation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -21,10 +23,12 @@ fun MainScreen(
                 navController = navHostController
             )
         },
-        content = { innerPadding ->
-            NavigationGraph(
-                navHostController = navHostController
-            )
+        content = { paddingValues ->
+            Box(modifier = Modifier.padding(paddingValues)){
+                NavigationGraph(
+                    navHostController = navHostController
+                )
+            }
         }
     )
 }

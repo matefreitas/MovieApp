@@ -11,6 +11,10 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -32,6 +36,8 @@ fun SearchContent(
     onEvent: (MovieSearchEvent) -> Unit,
     onDetail: (movieId: Int) -> Unit
 ) {
+    var isLoading by remember { mutableStateOf(false) }
+
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
@@ -39,6 +45,7 @@ fun SearchContent(
         SearchComponent(
             query = query,
             onSearch = {
+                isLoading = true
                 onSearch(it)
             },
             onQueryChangeEvent = {
@@ -66,19 +73,11 @@ fun SearchContent(
                         }
                     )
                 }
+                isLoading = false
             }
             pagingMovies.apply {
                 when{
-                    loadState.refresh is LoadState.Loading -> {
-                        item(
-                            span = {
-                                GridItemSpan(maxLineSpan)
-                            }
-                        ){
-                            LoadingView()
-                        }
-                    }
-                    loadState.append is LoadState.Loading -> {
+                    isLoading -> {
                         item(
                             span = {
                                 GridItemSpan(maxLineSpan)
@@ -88,6 +87,7 @@ fun SearchContent(
                         }
                     }
                     loadState.refresh is LoadState.Error ->{
+                        isLoading = false
                         item(
                             span = {
                                 GridItemSpan(maxLineSpan)
