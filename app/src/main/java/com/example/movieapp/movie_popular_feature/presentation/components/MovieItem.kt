@@ -23,6 +23,9 @@ import androidx.compose.ui.zIndex
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import coil3.request.error
+import coil3.request.placeholder
+import com.example.movieapp.R
 
 @Composable
 fun MovieItem(
@@ -53,7 +56,10 @@ fun MovieItem(
             Box {
                 AsyncImage(
                     model = ImageRequest.Builder(LocalContext.current).data(imageUrl)
-                        .crossfade(true).build(),
+                        .crossfade(true)
+                        .placeholder(R.drawable.ic_placeholder)
+                        .error(R.drawable.ic_error_image)
+                        .build(),
                     contentDescription = null,
                     contentScale = ContentScale.FillHeight,
                     modifier = Modifier
