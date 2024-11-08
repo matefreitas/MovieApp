@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.example.movieapp.ui.theme.white
 
 @Composable
-fun GenreTag(
+fun MovieDetailGenreTag(
     genre: String
 ) {
     Box(modifier = Modifier
@@ -36,8 +36,8 @@ fun GenreTag(
 
 @Preview
 @Composable
-private fun GenreTagPreview() {
-    GenreTag(
+private fun MovieDetailGenreTagPreview() {
+    MovieDetailGenreTag(
         genre = "Aventura"
     )
 }
