@@ -45,7 +45,7 @@ fun MovieDetailOverview(
         )
         if (expanded){
             Text(
-                text = stringResource(R.string.description),
+                text = overview,
                 color = Color.DarkGray,
                 fontFamily = FontFamily.SansSerif,
                 fontSize = 20.sp,
