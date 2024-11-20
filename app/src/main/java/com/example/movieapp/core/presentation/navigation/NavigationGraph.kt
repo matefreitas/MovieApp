@@ -9,6 +9,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.movieapp.core.util.Constants
+import com.example.movieapp.move_favorite_feature.presentation.MovieFavoriteViewModel
+import com.example.movieapp.move_favorite_feature.presentation.components.MovieFavoriteScreen
 import com.example.movieapp.movie_detail_feature.presentation.MovieDetailScreen
 import com.example.movieapp.movie_detail_feature.presentation.MovieDetailViewModel
 import com.example.movieapp.movie_popular_feature.presentation.MoviePopularScreen
@@ -49,7 +51,15 @@ fun NavigationGraph(
             )
         }
         composable(BottomNavItem.MovieFavorite.route){
+            val viewModel: MovieFavoriteViewModel = hiltViewModel()
+            val uiState = viewModel.uiState
 
+            MovieFavoriteScreen(
+                uiState = uiState,
+                navigateToDetail = {
+                    navHostController.navigate(BottomNavItem.MovieDetail.passMovieId(movieId = it))
+                }
+            )
         }
 
         composable(
