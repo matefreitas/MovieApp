@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movieapp.movie_detail_feature.presentation.state.MovieDetailState
 import com.example.movieapp.R
+import com.example.movieapp.core.domain.model.Movie
 import com.example.movieapp.movie_detail_feature.presentation.components.MovieDetailContent
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -20,13 +21,16 @@ import com.example.movieapp.movie_detail_feature.presentation.components.MovieDe
 fun MovieDetailScreen(
     id: Int?,
     uiState: MovieDetailState,
-    getMoviedetail: (MovieDetailEvent.GetMovieDetail) -> Unit
+    getMoviedetail: (MovieDetailEvent.GetMovieDetail) -> Unit,
+    onAddFavorite: (Movie) -> Unit,
+    checkedFavorite: (MovieDetailEvent.CheckedFavorite) -> Unit
 ) {
     val pagingMoviesSimilar = uiState.results.collectAsLazyPagingItems()
 
     LaunchedEffect(key1 = true) {
         if (id != null) {
             getMoviedetail(MovieDetailEvent.GetMovieDetail(id))
+            checkedFavorite(MovieDetailEvent.CheckedFavorite(id))
         }
     }
 
@@ -46,7 +50,9 @@ fun MovieDetailScreen(
                 isLoading = uiState.isLoading,
                 error = uiState.error,
                 iconColor = uiState.iconColor,
-                onAddFavorite = {}
+                onAddFavorite = {
+                    onAddFavorite(it)
+                }
             )
         }
     )
