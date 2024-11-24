@@ -1,7 +1,6 @@
 package com.example.movieapp.core.presentation.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -73,16 +72,11 @@ fun NavigationGraph(
         ){
             val viewModel: MovieDetailViewModel = hiltViewModel()
             val uiState = viewModel.uiState
-            val getMovieDetail = viewModel::getMovieDetail
             val onAddFavorite  = viewModel::onAddFavorite
-            val checkedFavorite = viewModel::checkedFavorite
 
             MovieDetailScreen(
-                id = it.arguments?.getInt(Constants.MOVIE_DETAIL_ARGUMENT_KEY),
                 uiState = uiState,
-                getMoviedetail = getMovieDetail,
                 onAddFavorite = onAddFavorite,
-                checkedFavorite = checkedFavorite
             )
         }
     }
