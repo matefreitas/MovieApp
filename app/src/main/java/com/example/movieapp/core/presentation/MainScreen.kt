@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.example.movieapp.core.presentation.navigation.BottomnavigationBar
+import com.example.movieapp.core.presentation.navigation.CurrentRoute
+import com.example.movieapp.core.presentation.navigation.DetailScreenNav
 import com.example.movieapp.core.presentation.navigation.NavigationGraph
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -18,13 +20,14 @@ fun MainScreen(
 ) {
     Scaffold(
         bottomBar = {
-            BottomnavigationBar(
-                modifier = modifier,
-                navController = navHostController
-            )
+            if (CurrentRoute(navHostController) != DetailScreenNav.DetailScreen.route) {
+                BottomnavigationBar(
+                    navController = navHostController
+                )
+            }
         },
         content = { paddingValues ->
-            Box(modifier = Modifier.padding(paddingValues)){
+            Box(modifier = Modifier.padding(paddingValues)) {
                 NavigationGraph(
                     navHostController = navHostController
                 )
