@@ -6,24 +6,19 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
-import coil3.request.error
-import coil3.request.placeholder
 import com.example.movieapp.core.domain.model.Movie
-import com.example.movieapp.R
+import com.example.movieapp.core.presentation.components.commom.AsyncImageUrl
 
 @Composable
 fun MovieFavoriteItem(
@@ -32,27 +27,27 @@ fun MovieFavoriteItem(
     onClick: (id: Int) -> Unit
 ) {
     Card(
-        modifier = modifier.fillMaxWidth().clickable{
-            onClick(movie.id)
-        }
-    ){
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable {
+                onClick(movie.id)
+            }
+    ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Box(
-                modifier = Modifier.fillMaxWidth().height(200.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
             ) {
-                AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(movie.imageUrl)
-                        .crossfade(true)
-                        .placeholder(R.drawable.ic_placeholder)
-                        .error(R.drawable.ic_error_image)
-                        .build(),
-                    contentDescription = null,
+                AsyncImageUrl(
+                    imageUrl = movie.imageUrl,
                     contentScale = ContentScale.FillWidth,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
                 )
             }
             Text(
@@ -70,7 +65,7 @@ fun MovieFavoriteItem(
 @Composable
 fun MovieFavoriteItemPreview() {
     MovieFavoriteItem(
-        movie =  Movie(
+        movie = Movie(
             id = 1,
             title = "Homem Aranha",
             voteAverage = 7.89,

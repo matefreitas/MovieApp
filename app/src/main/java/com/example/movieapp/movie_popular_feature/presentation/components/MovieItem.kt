@@ -26,6 +26,7 @@ import coil3.request.crossfade
 import coil3.request.error
 import coil3.request.placeholder
 import com.example.movieapp.R
+import com.example.movieapp.core.presentation.components.commom.AsyncImageUrl
 
 @Composable
 fun MovieItem(
@@ -54,14 +55,8 @@ fun MovieItem(
             elevation = CardDefaults.cardElevation(8.dp)
         ) {
             Box {
-                AsyncImage(
-                    model = ImageRequest.Builder(LocalContext.current).data(imageUrl)
-                        .crossfade(true)
-                        .placeholder(R.drawable.ic_placeholder)
-                        .error(R.drawable.ic_error_image)
-                        .build(),
-                    contentDescription = null,
-                    contentScale = ContentScale.FillHeight,
+                AsyncImageUrl(
+                    imageUrl = imageUrl,
                     modifier = Modifier
                         .fillMaxWidth()
                         .align(Alignment.BottomCenter)
