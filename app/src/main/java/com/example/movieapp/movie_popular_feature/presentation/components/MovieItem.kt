@@ -15,17 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import coil3.compose.AsyncImage
-import coil3.request.ImageRequest
-import coil3.request.crossfade
-import coil3.request.error
-import coil3.request.placeholder
-import com.example.movieapp.R
 import com.example.movieapp.core.presentation.components.commom.AsyncImageUrl
 
 @Composable
