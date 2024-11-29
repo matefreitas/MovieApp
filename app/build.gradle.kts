@@ -94,6 +94,7 @@ dependencies {
     implementation(libs.hilt.compose)
     implementation(libs.room.ktx)
     implementation(libs.room.runtime)
+    implementation(libs.truth)
 
     annotationProcessor(libs.room.compiler)
 
@@ -102,10 +103,17 @@ dependencies {
     ksp(libs.room.compiler)
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.hilt.android.test)
+    androidTestImplementation(libs.core.test)
+    androidTestImplementation(libs.kotlix.coroutines.test)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.mockito.android)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
