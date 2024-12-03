@@ -28,7 +28,8 @@ android {
         buildConfigField("String", "BASE_URL", apiKeyProperties["BASE_URL"].toString())
         buildConfigField("String", "BASE_URL_IMAGE", apiKeyProperties["BASE_URL_IMAGE"].toString())
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "br.com.movieapp.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
