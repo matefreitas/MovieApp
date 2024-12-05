@@ -43,14 +43,14 @@ class MovieDaoTest {
     }
 
     @Test
-    fun getMovies() = runTest {
+    fun test_getMovies_should_return_list_of_movies() = runTest {
         val movies = movieDao.getMovies().first()
 
         assertThat(movies.size).isEqualTo(0)
     }
 
     @Test
-    fun getMovies_orderById() = runTest{
+    fun test_getMovies_should_return_movies_ordered_by_id() = runTest {
         val moviesEntitys = listOf(
             MovieEntity(movieId = 1, title = "Homem de Ferro 1", imageUrl = "Url1"),
             MovieEntity(movieId = 4, title = "Homem de Ferro 2", imageUrl = "Url1"),
@@ -66,5 +66,19 @@ class MovieDaoTest {
         assertThat(movies[1].movieId).isEqualTo(2)
         assertThat(movies[2].movieId).isEqualTo(3)
         assertThat(movies[3].movieId).isEqualTo(4)
+    }
+
+    @Test
+    fun test_getMovie_should_return_correct_movie_by_id() = runTest {
+        val movieEntity = MovieEntity(movieId = 1, title = "Homem de Ferro 1", imageUrl = "Url1")
+
+        movieDao.insertMovie(movieEntity)
+
+        val movies = movieDao.getMovies().first()
+        val movieClick = movies[0]
+
+        val movieId = movieDao.getMovie(movieClick.movieId)
+
+        assertThat(movieId?.title).isEqualTo(movieClick.title)
     }
 }
