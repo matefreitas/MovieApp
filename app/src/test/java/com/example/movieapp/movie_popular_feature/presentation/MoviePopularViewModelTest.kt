@@ -16,6 +16,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
+import kotlin.RuntimeException
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
@@ -45,5 +46,14 @@ class MoviePopularViewModelTest {
         val result = viewModel.uiState.movies.first()
 
         assertThat(result).isNotNull()
+    }
+
+    @Test(expected = RuntimeException::class)
+    fun `must throw an exception when the calling to the use returns an exception`() = runTest {
+        whenever(getPopularMoviesUseCase.invoke()).thenThrow(RuntimeException())
+
+        val result = viewModel.uiState.movies.first()
+
+        assertThat(result).isNull()
     }
 }
