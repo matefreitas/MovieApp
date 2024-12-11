@@ -19,6 +19,7 @@ okhttp = "5.0.0-alpha.14"
 hilt = "2.52"
 hiltCompose = "1.2.0"
 room = "2.6.1"
+roomTesting = "2.6.1"
 ksp = "2.0.21-1.0.26"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -29,6 +30,8 @@ core = "2.2.0"
 kotlinxCoroutines = "1.9.0"
 mockitoCore = "5.14.2"
 mockitoInline = "5.2.0"
+javaxInject = "1"
+mockitokotlin = "2.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -68,6 +71,7 @@ hilt-compose-compiler = { group = "androidx.hilt", name = "hilt-compiler", versi
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-test = { group = "androidx.room", name = "room-testing", version.ref = "roomTesting"}
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth"}
 hilt-android-test = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hiltTest" }
 core-test = { group = "androidx.arch.core", name = "core-testing", version.ref = "core" }
@@ -75,6 +79,8 @@ kotlix-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coro
 mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockitoCore" }
 mockito-android = { group = "org.mockito", name = "mockito-android", version.ref = "mockitoCore" }
 mockito-inline = { group = "org.mockito", name = "mockito-inline", version.ref = "mockitoInline" }
+javax-inject = { group = "javax.inject", name = "javax.inject", version.ref = "javaxInject" }
+mockito-kotlin = { group = "com.nhaarman.mockitokotlin2", name = "mockito-kotlin", version.ref = "mockitokotlin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
