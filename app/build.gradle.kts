@@ -111,6 +111,7 @@ dependencies {
     testImplementation(libs.kotlix.coroutines.test)
     testImplementation(libs.core.test)
     testImplementation(libs.room.test)
+    testImplementation(libs.paging.commom)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

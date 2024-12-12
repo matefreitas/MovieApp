@@ -3,17 +3,18 @@ agp = "8.7.3"
 kotlin = "2.0.21"
 coreKtx = "1.15.0"
 activityCompose = "1.9.3"
-composeBom = "2024.11.00"
+composeBom = "2024.12.01"
 coilCompose = "3.0.4"
 timber = "5.0.1"
 dataStore = "1.1.1"
 splashScreen = "1.0.1"
 gson = "2.11.0"
 lifeCycle = "2.8.7"
-materialIcons = "1.7.5"
+materialIcons = "1.7.6"
 flowLayout = "0.36.0"
-navigation = "2.8.4"
-paging = "3.3.4"
+navigation = "2.8.5"
+paging = "3.3.5"
+paging-commom = "3.3.5"
 retrofit = "2.11.0"
 okhttp = "5.0.0-alpha.14"
 hilt = "2.52"
@@ -59,6 +60,7 @@ flow-layout = { group = "com.google.accompanist", name = "accompanist-flowlayout
 navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
 paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
+paging-commom = { group = "androidx.paging", name = "paging-common", version.ref = "paging-commom" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifeCycle" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
