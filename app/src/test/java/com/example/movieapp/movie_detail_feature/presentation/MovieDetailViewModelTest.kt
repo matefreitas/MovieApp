@@ -148,4 +148,38 @@ class MovieDetailViewModelTest {
         val iconColor = viewModel.uiState.iconColor
         assertThat(Color.Red).isEqualTo(iconColor)
     }
+
+    @Test
+    fun `must notify uiState with bookmark icon filled in check returns true`() = runTest {
+        whenever(isMovieFavorite.invoke(any())).thenReturn(
+            flowOf(ResultData.Success(true))
+        )
+
+        val checkedArgumentCaptor = argumentCaptor<IsMovieFavoriteUseCase.Params>()
+
+        viewModel.uiState.isLoading
+
+        verify(isMovieFavorite).invoke(checkedArgumentCaptor.capture())
+        assertThat(movie.id).isEqualTo(checkedArgumentCaptor.firstValue.movieId)
+
+        val iconColor = viewModel.uiState.iconColor
+        assertThat(Color.Red).isEqualTo(iconColor)
+    }
+
+    @Test
+    fun `must notify uiState with bookmark icon filled in check returns false`() = runTest {
+        whenever(isMovieFavorite.invoke(any())).thenReturn(
+            flowOf(ResultData.Success(false))
+        )
+
+        val checkedArgumentCaptor = argumentCaptor<IsMovieFavoriteUseCase.Params>()
+
+        viewModel.uiState.isLoading
+
+        verify(isMovieFavorite).invoke(checkedArgumentCaptor.capture())
+        assertThat(movie.id).isEqualTo(checkedArgumentCaptor.firstValue.movieId)
+
+        val iconColor = viewModel.uiState.iconColor
+        assertThat(Color.White).isEqualTo(iconColor)
+    }
 }
