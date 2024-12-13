@@ -1,5 +1,6 @@
 package com.example.movieapp.movie_detail_feature.presentation
 
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
 import androidx.paging.PagingData
 import com.example.movieapp.TestDispatcherRule
@@ -86,5 +87,65 @@ class MovieDetailViewModelTest {
         val results = viewModel.uiState.results
         assertThat(moviesDetails).isNotNull()
         assertThat(results).isNotNull()
+    }
+
+    @Test
+    fun `must notify uiState Error when get movies and returns exception`() = runTest {
+        val exception = Exception("Um erro ocorreu")
+        whenever(getMoviesDetailsUseCase.invoke(any())).thenReturn(flowOf(ResultData.Failure(exception)))
+
+        viewModel.uiState.isLoading
+
+        val error = viewModel.uiState.error
+
+        assertThat(exception.message).isEqualTo(error)
+    }
+
+    @Test
+    fun `must call delete favorite and notify of uiState with filed favorite icon when current icon is checked`() = runTest {
+        whenever(deleteMovieFavoriteUseCase.invoke(any())).thenReturn(
+            flowOf(ResultData.Success(Unit))
+        )
+        whenever(isMovieFavorite.invoke(any())).thenReturn(
+            flowOf(ResultData.Success(true))
+        )
+
+        val deleteArgumentCaptor = argumentCaptor<DeleteMovieFavoriteUseCase.Params>()
+        val checkedArgumentCaptor = argumentCaptor<IsMovieFavoriteUseCase.Params>()
+
+        viewModel.onAddFavorite(movie)
+
+        verify(deleteMovieFavoriteUseCase).invoke(deleteArgumentCaptor.capture())
+        assertThat(movie).isEqualTo(deleteArgumentCaptor.firstValue.movie)
+
+        verify(isMovieFavorite).invoke(checkedArgumentCaptor.capture())
+        assertThat(movie.id).isEqualTo(checkedArgumentCaptor.firstValue.movieId)
+
+        val iconColor = viewModel.uiState.iconColor
+        assertThat(Color.White).isEqualTo(iconColor)
+    }
+
+    @Test
+    fun `must notify uiState with filled favorite icon when current icon is unchecked`() = runTest {
+        whenever(addMovieFavoriteUseCase.invoke(any())).thenReturn(
+            flowOf(ResultData.Success(Unit))
+        )
+        whenever(isMovieFavorite.invoke(any())).thenReturn(
+            flowOf(ResultData.Success(false))
+        )
+
+        val addArgumentCaptor = argumentCaptor<AddMovieFavoriteUseCase.Params>()
+        val checkedArgumentCaptor = argumentCaptor<IsMovieFavoriteUseCase.Params>()
+
+        viewModel.onAddFavorite(movie)
+
+        verify(addMovieFavoriteUseCase).invoke(addArgumentCaptor.capture())
+        assertThat(movie).isEqualTo(addArgumentCaptor.firstValue.movie)
+
+        verify(isMovieFavorite).invoke(checkedArgumentCaptor.capture())
+        assertThat(movie.id).isEqualTo(checkedArgumentCaptor.firstValue.movieId)
+
+        val iconColor = viewModel.uiState.iconColor
+        assertThat(Color.Red).isEqualTo(iconColor)
     }
 }

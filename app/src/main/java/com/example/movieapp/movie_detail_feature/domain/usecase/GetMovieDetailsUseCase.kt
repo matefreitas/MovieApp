@@ -10,7 +10,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import okio.IOException
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -38,7 +37,7 @@ class GetMovieDetailsUseCaseImpl @Inject constructor(
                 emit(ResultData.Success(movieSimilar to movieDetails))
             } catch (e: HttpException) {
                 emit(ResultData.Failure(e))
-            } catch (e: IOException) {
+            } catch (e: Exception) {
                 emit(ResultData.Failure(e))
             }
         }.flowOn(Dispatchers.IO)
