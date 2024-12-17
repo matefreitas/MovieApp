@@ -1,9 +1,10 @@
 package com.example.movieapp.search_movie_feature.domain.source
 
 import com.example.movieapp.core.data.remote.response.SearchResponse
+import com.example.movieapp.core.domain.model.MovieSearchPaging
 import com.example.movieapp.core.paging.MovieSearchPaggingSource
 
 interface MovieSearchRemoteDataSource {
     fun getSearchMoviePaggingSource(query: String): MovieSearchPaggingSource
-    suspend fun getSearchMovies(page: Int, query: String): SearchResponse
+    suspend fun getSearchMovies(page: Int, query: String): MovieSearchPaging
 }

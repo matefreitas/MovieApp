@@ -4,8 +4,6 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.movieapp.core.domain.model.Movie
 import com.example.movieapp.movie_popular_feature.domain.source.MoviePopularRemoteDataSource
-import retrofit2.HttpException
-import java.io.IOException
 
 class MoviePagingSource(
     private val remoteDataSource: MoviePopularRemoteDataSource
@@ -30,12 +28,8 @@ class MoviePagingSource(
                 prevKey = if (pageNumber == 1 ) null else pageNumber - 1,
                 nextKey = if (pageNumber == totalPages) null else pageNumber + 1
                 )
-        }catch (exception: IOException){
-            exception.printStackTrace()
-            return LoadResult.Error(exception)
-        }catch (exception: HttpException){
-            exception.printStackTrace()
-            return LoadResult.Error(exception)
+        }catch (exception: Exception){
+            LoadResult.Error(exception)
         }
 
     }

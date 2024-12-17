@@ -1,11 +1,12 @@
 package com.example.movieapp.core.paging
 
+import androidx.compose.runtime.key
 import androidx.paging.PagingSource
 import com.example.movieapp.TestDispatcherRule
-import com.example.movieapp.core.domain.model.Movie
-import com.example.movieapp.core.domain.model.MovieFactory
-import com.example.movieapp.core.domain.model.MoviePagingFactory
-import com.example.movieapp.movie_popular_feature.domain.source.MoviePopularRemoteDataSource
+import com.example.movieapp.core.domain.model.MovieSearch
+import com.example.movieapp.core.domain.model.MovieSearchFactory
+import com.example.movieapp.core.domain.model.MovieSearchPagingFactory
+import com.example.movieapp.search_movie_feature.domain.source.MovieSearchRemoteDataSource
 import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
@@ -19,39 +20,38 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @ExperimentalCoroutinesApi
 @RunWith(MockitoJUnitRunner::class)
-class MoviePagingSourceTest{
+class MovieSearchPaggingSourceTest{
 
     @get:Rule
     val dispatcherRule = TestDispatcherRule()
 
     @Mock
-    lateinit var remoteDataSource: MoviePopularRemoteDataSource
+    lateinit var remoteDataSource: MovieSearchRemoteDataSource
 
-    private val movieFactory = MovieFactory()
+    private val movieSearchFactory = MovieSearchFactory()
 
-    private val moviePagingFactory = MoviePagingFactory().create()
+    private val movieSearchPagingFactory = MovieSearchPagingFactory().create()
 
-    private val moviePagingSource by lazy {
-        MoviePagingSource(remoteDataSource = remoteDataSource)
+    private val movieSearchPagingSource by lazy {
+        MovieSearchPaggingSource(query = "", remoteDataSource = remoteDataSource)
     }
 
     @Test
     fun `must return a sucess load result when load it is called`() = runTest {
-        whenever(remoteDataSource.getPopularMovies(any())).thenReturn(
-            moviePagingFactory
+        whenever(remoteDataSource.getSearchMovies(any(), any())).thenReturn(
+            movieSearchPagingFactory
         )
 
-        val result = moviePagingSource.load(
+        val result = movieSearchPagingSource.load(
             PagingSource.LoadParams.Refresh(
                 key = null,
                 loadSize = 2,
                 placeholdersEnabled = false
             )
         )
-
         val resultExpected = listOf(
-            movieFactory.create(MovieFactory.Poster.Avengers),
-            movieFactory.create(MovieFactory.Poster.JohnWick)
+            movieSearchFactory.create(MovieSearchFactory.Poster.Avengers),
+            movieSearchFactory.create(MovieSearchFactory.Poster.JohnWick)
         )
 
         assertThat(PagingSource.LoadResult.Page(
@@ -64,11 +64,11 @@ class MoviePagingSourceTest{
     @Test
     fun `must return a error load result when load is calles`() = runTest {
         val expectation = RuntimeException()
-        whenever(remoteDataSource.getPopularMovies(any())).thenThrow(
+        whenever(remoteDataSource.getSearchMovies(any(), any())).thenThrow(
             expectation
         )
 
-        val result = moviePagingSource.load(
+        val result = movieSearchPagingSource.load(
             PagingSource.LoadParams.Refresh(
                 key = null,
                 loadSize = 2,
@@ -76,6 +76,7 @@ class MoviePagingSourceTest{
             )
         )
 
-        assertThat(PagingSource.LoadResult.Error<Int, Movie>(expectation)).isEqualTo(result)
+        assertThat(PagingSource.LoadResult.Error<Int, MovieSearch>(expectation)).isEqualTo(result)
     }
+
 }

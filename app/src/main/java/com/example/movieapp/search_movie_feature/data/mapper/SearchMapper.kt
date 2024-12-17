@@ -11,3 +11,11 @@ fun List<SearchResult>.toMovieSearch() = map { searchResult ->
         voteAvarege = searchResult.voteAverage
     )
 }
+
+fun SearchResult.toMovieSearch(): MovieSearch{
+    return MovieSearch(
+        id = id,
+        voteAvarege = voteAverage,
+        imageUrl = posterPath.toPostUrl()
+    )
+}
