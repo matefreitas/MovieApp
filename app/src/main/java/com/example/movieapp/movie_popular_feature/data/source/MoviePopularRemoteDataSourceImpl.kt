@@ -1,7 +1,6 @@
 package com.example.movieapp.movie_popular_feature.data.source
 
 import com.example.movieapp.core.data.remote.MovieService
-import com.example.movieapp.core.data.remote.response.MovieResponse
 import com.example.movieapp.core.domain.model.MoviePaging
 import com.example.movieapp.core.paging.MoviePagingSource
 import com.example.movieapp.movie_popular_feature.data.mapper.toMovie

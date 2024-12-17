@@ -3,7 +3,6 @@ package com.example.movieapp.core.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.movieapp.core.domain.model.Movie
-import com.example.movieapp.movie_popular_feature.data.mapper.toMovie
 import com.example.movieapp.movie_popular_feature.domain.source.MoviePopularRemoteDataSource
 import retrofit2.HttpException
 import java.io.IOException
