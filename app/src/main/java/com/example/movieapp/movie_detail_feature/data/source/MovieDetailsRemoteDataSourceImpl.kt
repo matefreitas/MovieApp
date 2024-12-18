@@ -1,11 +1,12 @@
 package com.example.movieapp.movie_detail_feature.data.source
 
 import com.example.movieapp.core.data.remote.MovieService
-import com.example.movieapp.core.data.remote.response.MovieResponse
 import com.example.movieapp.core.domain.model.MovieDetails
+import com.example.movieapp.core.domain.model.MoviePaging
 import com.example.movieapp.core.paging.MovieSimilarPagingSource
 import com.example.movieapp.core.util.toBackDropUrl
 import com.example.movieapp.movie_detail_feature.domain.source.MovieDetailsRemoteDataSource
+import com.example.movieapp.movie_popular_feature.data.mapper.toMovie
 import javax.inject.Inject
 
 class MovieDetailsRemoteDataSourceImpl @Inject constructor(
@@ -30,8 +31,14 @@ class MovieDetailsRemoteDataSourceImpl @Inject constructor(
     override suspend fun getMoviesSimilar(
         page: Int,
         movieId: Int
-    ): MovieResponse {
-        return service.getMoviesSimilar(page = page, movieId = movieId)
+    ): MoviePaging {
+        val response = service.getMoviesSimilar(page = page, movieId = movieId)
+        return MoviePaging(
+            page = response.page,
+            totalPages = response.totalPages,
+            totalResults = response.totalResults,
+            movies = response.results.map { it.toMovie() }
+        )
     }
 
     override fun getSimilarMoviesPagingSource(movieId: Int): MovieSimilarPagingSource {
