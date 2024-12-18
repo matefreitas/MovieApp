@@ -1,16 +1,15 @@
 package com.example.movieapp.core.paging
 
 import androidx.paging.PagingSource
-import androidx.room.util.query
 import com.example.movieapp.TestDispatcherRule
 import com.example.movieapp.core.domain.model.Movie
 import com.example.movieapp.core.domain.model.MovieFactory
 import com.example.movieapp.core.domain.model.MoviePagingFactory
 import com.example.movieapp.movie_detail_feature.domain.source.MovieDetailsRemoteDataSource
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Rule
 import org.junit.Test
