@@ -1,4 +1,4 @@
-package com.example.movieapp.move_favorite_feature.data.usecase
+package com.example.movieapp.move_favorite_feature.domain.usecase
 
 import com.example.movieapp.core.domain.model.Movie
 import com.example.movieapp.core.util.ResultData
@@ -9,17 +9,17 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-interface DeleteMovieFavoriteUseCase{
+interface AddMovieFavoriteUseCase{
     suspend operator fun invoke(params: Params): Flow<ResultData<Unit>>
     data class Params(val movie: Movie)
 }
 
-class DeleteMovieFavoriteUseCaseImpl @Inject constructor(
+class AddMovieFavoriteUseCaseImpl @Inject constructor(
     private val movieFavoriteRepository: MovieFavoriteRepository
-) : DeleteMovieFavoriteUseCase{
-    override suspend fun invoke(params: DeleteMovieFavoriteUseCase.Params): Flow<ResultData<Unit>> {
+) : AddMovieFavoriteUseCase {
+    override suspend fun invoke(params: AddMovieFavoriteUseCase.Params): Flow<ResultData<Unit>> {
         return flow {
-            val insert = movieFavoriteRepository.delete(params.movie)
+            val insert = movieFavoriteRepository.insert(params.movie)
             emit(ResultData.Success(insert))
         }.flowOn(Dispatchers.IO)
     }

@@ -1,4 +1,4 @@
-package com.example.movieapp.move_favorite_feature.data.usecase
+package com.example.movieapp.move_favorite_feature.domain.usecase
 
 import com.example.movieapp.core.domain.model.Movie
 import com.example.movieapp.core.util.ResultData
@@ -15,7 +15,7 @@ interface GetMoviesFavoriteUseCase{
 
 class GetMoviesFavoriteUseCaseImpl @Inject constructor(
     private val movieFavoriteRepository: MovieFavoriteRepository
-) : GetMoviesFavoriteUseCase{
+) : GetMoviesFavoriteUseCase {
     override suspend fun invoke(): Flow<List<Movie>> {
         return movieFavoriteRepository.getMovies()
     }

@@ -7,9 +7,9 @@ import com.example.movieapp.TestDispatcherRule
 import com.example.movieapp.core.domain.model.MovieFactory
 import com.example.movieapp.core.domain.model.MoviesDetailsFactory
 import com.example.movieapp.core.util.ResultData
-import com.example.movieapp.move_favorite_feature.data.usecase.AddMovieFavoriteUseCase
-import com.example.movieapp.move_favorite_feature.data.usecase.DeleteMovieFavoriteUseCase
-import com.example.movieapp.move_favorite_feature.data.usecase.IsMovieFavoriteUseCase
+import com.example.movieapp.move_favorite_feature.domain.usecase.AddMovieFavoriteUseCase
+import com.example.movieapp.move_favorite_feature.domain.usecase.DeleteMovieFavoriteUseCase
+import com.example.movieapp.move_favorite_feature.domain.usecase.IsMovieFavoriteUseCase
 import com.example.movieapp.movie_detail_feature.domain.usecase.GetMovieDetailsUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import com.google.common.truth.Truth.assertThat

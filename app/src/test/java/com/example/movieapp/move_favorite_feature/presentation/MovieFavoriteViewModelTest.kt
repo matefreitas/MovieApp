@@ -2,7 +2,7 @@ package com.example.movieapp.move_favorite_feature.presentation
 
 import com.example.movieapp.TestDispatcherRule
 import com.example.movieapp.core.domain.model.MovieFactory
-import com.example.movieapp.move_favorite_feature.data.usecase.GetMoviesFavoriteUseCase
+import com.example.movieapp.move_favorite_feature.domain.usecase.GetMoviesFavoriteUseCase
 import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi

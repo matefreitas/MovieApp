@@ -11,9 +11,9 @@ import com.example.movieapp.core.domain.model.Movie
 import com.example.movieapp.core.util.Constants
 import com.example.movieapp.core.util.ResultData
 import com.example.movieapp.core.util.UtilFunctions
-import com.example.movieapp.move_favorite_feature.data.usecase.AddMovieFavoriteUseCase
-import com.example.movieapp.move_favorite_feature.data.usecase.DeleteMovieFavoriteUseCase
-import com.example.movieapp.move_favorite_feature.data.usecase.IsMovieFavoriteUseCase
+import com.example.movieapp.move_favorite_feature.domain.usecase.AddMovieFavoriteUseCase
+import com.example.movieapp.move_favorite_feature.domain.usecase.DeleteMovieFavoriteUseCase
+import com.example.movieapp.move_favorite_feature.domain.usecase.IsMovieFavoriteUseCase
 import com.example.movieapp.movie_detail_feature.domain.usecase.GetMovieDetailsUseCase
 import com.example.movieapp.movie_detail_feature.presentation.state.MovieDetailState
 import dagger.hilt.android.lifecycle.HiltViewModel

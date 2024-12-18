@@ -6,7 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movieapp.move_favorite_feature.data.usecase.GetMoviesFavoriteUseCase
+import com.example.movieapp.move_favorite_feature.domain.usecase.GetMoviesFavoriteUseCase
 import com.example.movieapp.move_favorite_feature.presentation.state.MovieFavoriteState
 import com.example.movieapp.movie_detail_feature.domain.usecase.GetMovieDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
