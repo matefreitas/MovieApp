@@ -1,26 +1,17 @@
 package com.example.movieapp.movie_detail_feature.presentation
 
-import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
 import androidx.paging.PagingData
 import com.example.movieapp.TestDispatcherRule
 import com.example.movieapp.core.domain.model.MovieFactory
 import com.example.movieapp.core.domain.model.MoviesDetailsFactory
-import com.example.movieapp.core.util.ResultData
 import com.example.movieapp.move_favorite_feature.domain.usecase.AddMovieFavoriteUseCase
 import com.example.movieapp.move_favorite_feature.domain.usecase.DeleteMovieFavoriteUseCase
 import com.example.movieapp.move_favorite_feature.domain.usecase.IsMovieFavoriteUseCase
 import com.example.movieapp.movie_detail_feature.domain.usecase.GetMovieDetailsUseCase
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import com.google.common.truth.Truth.assertThat
-import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.argumentCaptor
-import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Rule
-import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
