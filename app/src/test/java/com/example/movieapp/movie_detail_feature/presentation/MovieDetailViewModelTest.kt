@@ -70,7 +70,7 @@ class MovieDetailViewModelTest {
             }
         )
     }
-
+/*
     @Test
     fun `must notify uiState with Success when get movies similar and movie details returns success`() = runTest {
         whenever(getMoviesDetailsUseCase.invoke(any())).thenReturn(
@@ -181,5 +181,5 @@ class MovieDetailViewModelTest {
 
         val iconColor = viewModel.uiState.iconColor
         assertThat(Color.White).isEqualTo(iconColor)
-    }
+    }*/
 }

@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingConfig
 import com.example.movieapp.core.domain.model.Movie
 import com.example.movieapp.core.util.Constants
 import com.example.movieapp.core.util.ResultData
@@ -132,40 +133,48 @@ class MovieDetailViewModel @Inject constructor(
 
             is MovieDetailEvent.GetMovieDetail -> {
                 viewModelScope.launch {
-                    getMovieDetailsUseCase.invoke(
+                    val resultData = getMovieDetailsUseCase.invoke(
                         params = GetMovieDetailsUseCase.Params(
-                            movieId = event.movieId
+                            movieId = event.movieId,
+                            pagingConfig = pagingConfig()
                         )
-                    ).collect { resultData ->
-                        when (resultData) {
-                            is ResultData.Success -> {
-                                uiState = uiState.copy(
-                                    isLoading = false,
-                                    movieDetails = resultData.data?.second,
-                                    results = resultData.data?.first ?: emptyFlow()
-                                )
-                            }
+                    )
+                    when (resultData) {
+                        is ResultData.Success -> {
+                            uiState = uiState.copy(
+                                isLoading = false,
+                                movieDetails = resultData.data?.second,
+                                results = resultData.data?.first ?: emptyFlow()
+                            )
+                        }
 
-                            is ResultData.Failure -> {
-                                uiState = uiState.copy(
-                                    isLoading = false,
-                                    error = resultData.e?.message.toString()
-                                )
-                                UtilFunctions.logError(
-                                    "DETAIL-ERRO",
-                                    resultData.e?.message.toString()
-                                )
-                            }
+                        is ResultData.Failure -> {
+                            uiState = uiState.copy(
+                                isLoading = false,
+                                error = resultData.e?.message.toString()
+                            )
+                            UtilFunctions.logError(
+                                "DETAIL-ERRO",
+                                resultData.e?.message.toString()
+                            )
+                        }
 
-                            is ResultData.Loading -> {
-                                uiState = uiState.copy(
-                                    isLoading = true
-                                )
-                            }
+                        is ResultData.Loading -> {
+                            uiState = uiState.copy(
+                                isLoading = true
+                            )
                         }
                     }
+
                 }
             }
         }
+    }
+
+    private fun pagingConfig(): PagingConfig {
+        return PagingConfig(
+            pageSize = 20,
+            initialLoadSize = 20
+        )
     }
 }
