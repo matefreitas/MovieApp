@@ -5,6 +5,7 @@ import com.example.movieapp.TestDispatcherRule
 import com.example.movieapp.core.domain.model.MovieFactory
 import com.example.movieapp.movie_popular_feature.domain.usecase.GetPopularMoviesUseCase
 import com.google.common.truth.Truth.assertThat
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
@@ -39,7 +40,7 @@ class MoviePopularViewModelTest {
 
     @Test
     fun `must validate paging data object values when calling paging data from movies`() = runTest {
-        whenever(getPopularMoviesUseCase.invoke()).thenReturn(flowOf(fakePagingDataMovies))
+        whenever(getPopularMoviesUseCase.invoke(any())).thenReturn(flowOf(fakePagingDataMovies))
 
         val result = viewModel.uiState.movies.first()
 
@@ -48,7 +49,7 @@ class MoviePopularViewModelTest {
 
     @Test(expected = RuntimeException::class)
     fun `must throw an exception when the calling to the use returns an exception`() = runTest {
-        whenever(getPopularMoviesUseCase.invoke()).thenThrow(RuntimeException())
+        whenever(getPopularMoviesUseCase.invoke(any())).thenThrow(RuntimeException())
 
         val result = viewModel.uiState.movies.first()
 
